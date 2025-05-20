@@ -1,0 +1,29 @@
+#Example of docker compose deploy file
+version: "3.9"
+services:
+
+# ===== FastAPI http server for signal analytics  ====
+ fastapi-http-server-anomaly-analytics:
+       container_name: fastapi_http_server_analytics01
+       image: fastapi_http_server_analytics_img:0.0.1
+       ports:
+              - 8000:${FLASK_PORT}
+       restart: always
+       volumes:
+              - "/etc/timezone:/etc/timezone:ro"
+              - "/etc/localtime:/etc/localtime:ro"
+       env_file:
+              - ./influxdb_settings.env
+       environment:
+              FLASK_PORT: ${FLASK_PORT}
+
+              MODEL_WINDOW_SIZE: ${MODEL_WINDOW_SIZE}
+              ANOMALY_LIST_SIZE: ${ANOMALY_LIST_SIZE}
+              Z_SCORE_THRESHOLD: 2.5
+       labels:
+              IoT.container.project: "IoT_Industrial"
+       networks:
+              - IOT_Network
+
+networks:
+    IOT_Network:
