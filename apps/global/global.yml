@@ -33,66 +33,7 @@ services:
        networks:
               - IOT_Network
               
-# ===== MQTT Broker ====
- global-mqtt:
-       container_name: Global_MqttBroker
-       image:  eclipse-mosquitto:2.0.15
-       ports:
-              - 1883:1883
-              - 9001:9001
-       restart: always
-       volumes:
-              - "/home/tomf/IIoT-mqtt/apps_data/mqtt/config:/mosquitto/config" 
-              - "/home/tomf/IIoT-mqtt/apps_data/mqtt/data:/mosquitto/data" 
-              - "/home/tomf/IIoT-mqtt/apps_data/mqtt/log:/mosquitto/log"
-              - "/etc/timezone:/etc/timezone:ro"
-              - "/etc/localtime:/etc/localtime:ro"
-       networks:
-              - IOT_Network
 
-
-# ===== Node exporter 1 ====
- node-exporter-1:
-       container_name: Node-Exporter-1
-       image:  bitnami/node-exporter:1.9.0
-       ports:
-              - 9101:9100
-       restart: always
-       networks:
-              - IOT_Network
-
-# ===== Node exporter 2 ====
- node-exporter-2:
-       container_name: Node-Exporter-2
-       image:  bitnami/node-exporter:1.9.0
-       ports:
-              - 9102:9100
-       restart: always
-       networks:
-              - IOT_Network
-
-# ===== Node exporter 3 ====
- node-exporter-3:
-       container_name: Node-Exporter-3
-       image:  bitnami/node-exporter:1.9.0
-       ports:
-              - 9103:9100
-       restart: always
-       networks:
-              - IOT_Network
-
-
-# ===== Prometheus ====
- global-prometheus:
-       container_name: Global_Prometheus
-       image:  bitnami/prometheus:2.55.1
-       ports:
-              - 9090:9090
-       restart: always
-       volumes:
-              - "/home/tomf/IIoT-mqtt/apps_data/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml" 
-       networks:
-              - IOT_Network
 
 # ===== Portainer =====
  global-portainer:
