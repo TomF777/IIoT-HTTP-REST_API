@@ -21,7 +21,7 @@ Folder `apps` includes:
 * `global`
 * `industrial_line1`
 
-`global` is the main component which runs InfluxdB, Grafana and Portainer - all of them as Docker containers. This stack should always be in operation.
+`global` is the main component which runs InfluxdB, Grafana and Portainer - all of them as Docker containers. This stack should be always in operation and is prerequisite for deploying respective plant/production line.
 
 `industrial_line1`  - Python FastApi Http server as Docker container. It handles incoming HTTP POST requests from sensors, PLC and GET requests from MES system (for now just simple simulation, not fully implemetned).
 The file `industrial_line.yml` for docker-compose can be composed of many single entries for each Python app. Respective `docker-compose` config for each Python app can be found in folder  `/src/subfolder_for_python_app` 
