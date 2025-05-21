@@ -12,6 +12,10 @@ services:
        volumes:
               - "/etc/timezone:/etc/timezone:ro"
               - "/etc/localtime:/etc/localtime:ro"
+              # list with generic sensors on which anomaly detection algorithm is to be applied
+              - "../../apps_data/restapi/analytics_generic_sensors.json:/src/analytics_generic_sensors.json"
+              # list of vibration sensors on which anomaly detection algorithm is to be applied
+              - "../../apps_data/restapi/analytics_vibration_sensors.json:/src/analytics_vibration_sensors.json"
        env_file:
               - ./influxdb_settings.env
        environment:
